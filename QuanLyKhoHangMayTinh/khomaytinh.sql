@@ -1,12 +1,12 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2023 at 05:43 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
-
+-- Generation Time: Sep 10, 2024 at 10:32 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
+SET SESSION sql_mode = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION';
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
@@ -32,7 +32,7 @@ CREATE TABLE `chitietcungcap` (
   `masanpham` int(11) NOT NULL,
   `gianhap` bigint(20) NOT NULL,
   `trangthai` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `chitietcungcap`
@@ -110,7 +110,7 @@ CREATE TABLE `chitietphieunhap` (
   `soluongthucte` int(11) NOT NULL,
   `soluongtonkho` int(11) NOT NULL,
   `trangthai` tinyint(4) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `chitietphieunhap`
@@ -156,7 +156,12 @@ INSERT INTO `chitietphieunhap` (`maphieunhap`, `manhacungcap`, `masanpham`, `sol
 (24, 8, 26, 5, 22890000, 'thienan', 5, 5, 1),
 (25, 6, 3, 15, 18990000, 'thienan', 10, 10, 1),
 (26, 8, 2, 10, 9150000, 'nvnhap', 5, 5, 1),
-(27, 2, 21, 10, 19290000, 'nvnhap', 0, 0, 1);
+(27, 2, 21, 10, 19290000, 'nvnhap', 0, 0, 1),
+(28, 6, 3, 4, 18990000, 'trunganh', 0, 0, 1),
+(29, 2, 8, 8, 16000000, 'trunganh', 0, 0, 1),
+(30, 6, 4, 323123, 21690000, 'hoainam1', 0, 0, 1),
+(32, 1, 1, 3, 15150000, 'trunganh', 0, 0, 1),
+(33, 5, 7, 5, 14200000, 'hoainam1', 0, 0, 1);
 
 --
 -- Triggers `chitietphieunhap`
@@ -190,7 +195,7 @@ CREATE TABLE `chitietphieuxuat` (
   `masanpham` int(11) NOT NULL,
   `soluong` int(11) NOT NULL,
   `dongia` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `chitietphieuxuat`
@@ -225,7 +230,8 @@ INSERT INTO `chitietphieuxuat` (`maphieuxuat`, `masanpham`, `soluong`, `dongia`)
 (22, 17, 10, 27490000),
 (23, 25, 10, 35990000),
 (24, 7, 8, 14890000),
-(25, 21, 10, 21890000);
+(25, 21, 10, 21890000),
+(26, 8, 1, 18490000);
 
 --
 -- Triggers `chitietphieuxuat`
@@ -253,7 +259,7 @@ CREATE TABLE `chitietquyen` (
   `machucnang` varchar(50) NOT NULL,
   `hanhdong` varchar(50) NOT NULL,
   `hanche` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `chitietquyen`
@@ -314,7 +320,7 @@ CREATE TABLE `chucnang` (
   `machucnang` varchar(50) NOT NULL,
   `tenchucnang` varchar(255) NOT NULL,
   `trangthai` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `chucnang`
@@ -342,7 +348,7 @@ CREATE TABLE `kho` (
   `tenkho` varchar(255) NOT NULL,
   `diachi` varchar(255) NOT NULL,
   `trangthai` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `kho`
@@ -364,7 +370,7 @@ CREATE TABLE `loaisanpham` (
   `maloaisanpham` int(11) NOT NULL,
   `tenloaisanpham` varchar(255) NOT NULL,
   `trangthai` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `loaisanpham`
@@ -393,25 +399,26 @@ CREATE TABLE `nguoidung` (
   `email` varchar(255) NOT NULL,
   `manhomquyen` int(11) NOT NULL,
   `trangthai` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `nguoidung`
 --
 
 INSERT INTO `nguoidung` (`taikhoan`, `matkhau`, `hoten`, `email`, `manhomquyen`, `trangthai`) VALUES
-('baoduy', '$2a$12$PzpNeXoGH.MPBTCj5CoODekfzNz2ji2fb58NAhzgTeT5KIimwPgkm', 'Nguyễn Lê Bảo Duy', 'baoduy@gmail.com', 2, 1),
-('haonhien', '$2a$12$8ZKIYfNbm61PsTv3vnMFiO82bn7I4KuyMpCcTdSQWWQiFaijVA4Z6', 'Âu Hạo Nhiên', 'nhienau@gmail.com', 1, 1),
-('hoainam', '$2a$12$s6pNzMuvZvnhxzlg4tcWiuMgelOHjzfX4JLC5.QCCBuJjm5kO8p7e', 'Thân Trọng Hoài Nam', 'hoainam@gmail.com', 2, 1),
-('ngoctram', '$2a$12$IRl.BXJrRIt2J5rux9V4s.ZoSxsQLpaITPSKTYTjFicLCAP1RR0ue', 'Võ Hồ Ngọc Trâm', 'ngoctram@gmail.com', 2, 1),
-('nvnhap', '$2a$12$eVl09v71cYD5PB4C7eDoHu7phOu5FwVOsfu2h2bNXq9Z9qGjadtTC', 'Nguyễn Anh Duy', 'nvnhap@gmail.com', 3, 1),
-('nvxuat', '$2a$12$0pgPE.PDGFfdY7.qiCXk2eMmNUwSXQpvgtqepOiufLf5c5eGxh1HS', 'Dương Tiến Ðức', 'nvxuat@gmail.com', 4, 1),
+('baoduy', '$2a$12$M0DQfU4FUGXvb9vGNssNQeMdtSHu0nJmHFfyPwIuITV06V1fwtxsK', 'Nguyễn Lê Bảo Duy', 'baoduy@gmail.com', 2, 1),
+('haonhien', '$2a$12$OvWSuy2AjDj6430rbXkPJeMmjClECC7zqsUBD7DtznNyfUhBRSgI.', 'Âu Hạo Nhiên', 'nhienau@gmail.com', 1, 1),
+('hoainam', '$2a$12$OvWSuy2AjDj6430rbXkPJeMmjClECC7zqsUBD7DtznNyfUhBRSgI.', 'Thân Trọng Hoài Nam', 'hoainam@gmail.com', 2, 1),
+('hoainam1', '$2a$12$JfZ/iCL9ntP210Hqbd60h.2UF.2dTrUviCLAqNH/3UvTefRCgXgpe', 'Nam', 'hoainam1@gmail.com', 3, 1),
+('ngoctram', '$2a$12$HMUuHTFK.6eooskj.iSRDeJjy30lrlfHXu/9NDX.vvumoCh1oKuVq', 'Võ Hồ Ngọc Trâm', 'ngoctram@gmail.com', 2, 1),
+('nvnhap', '$2a$12$eVl09v71cYD5PB4C7eDoHu7phOu5FwVOsfu2h2bNXq9Z9qGjadtTC', 'Nguyễn Anh Duy', 'nvnhap@gmail.com', 3, 0),
+('nvxuat', '$2a$12$0pgPE.PDGFfdY7.qiCXk2eMmNUwSXQpvgtqepOiufLf5c5eGxh1HS', 'Dương Tiến Ðức', 'nvxuat@gmail.com', 4, 0),
 ('testuser1', '$2a$12$AjXYGmuTP4ybCDRMm4.XPOR/3uRKdifqvwFBWAFulihyrI7DqdRzK', 'Ngô Lâm Vũ', 'test@gmail.com', 3, 0),
 ('testuser2', '$2a$12$8xi0pseEda5ofRH70nH2DedjWtdjufzoo7EdmNpKWeBaHCxBL51MO', 'Kim Quang Đông', 'testuser2@gmail.com', 5, 1),
-('testuser3', '$2a$12$3QfUiAHfBXV4uBpdv6u9AuXHz4w18ab/Uw02Dj7fBRmJDEUt1JVQS', 'Trần Đức Duy', 'testuser3@gmail.com', 4, 1),
-('thienan', '$2a$12$BQ3I/AQ4CrxTWEl.qscdken6AOUxYgXt0jRVSV0vREsjhGRUpkIOS', 'Nguyễn Thiên Ân', 'thienan@gmail.com', 2, 1),
-('thuyduyen', '$2a$12$Zz/ScTqeWvuBorhHYF1XpOKD8g0XhFHX81AGEFbMdIlUJYVFyic4u', 'Nguyễn Thuỳ Duyên', 'thuyduyen@gmail.com', 2, 1),
-('trunganh', '$2a$12$hGpO.9TAkYJBVlTJ0LTdvu4ykf.NAL.jHjSDQwKUqN1qD4b8xcNOK', 'Nguyễn Trung Anh', 'trunganh@gmail.com', 2, 1);
+('testuser3', '$2a$12$3QfUiAHfBXV4uBpdv6u9AuXHz4w18ab/Uw02Dj7fBRmJDEUt1JVQS', 'Trần Đức Duy', 'testuser3@gmail.com', 4, 0),
+('thienan', '$2a$12$Y1b5wYntRigC0.lgN8ta../6w2cljJ2OydkEHTEwUhtGvmyM2NKrC', 'Nguyễn Thiên Ân', 'thienan@gmail.com', 2, 1),
+('thuyduyen', '$2a$12$2/W0pPrJ6Tnh8bI9f501XuCr0YitwVtg3Ic1kD8E3O1cSdZ6YZD76', 'Nguyễn Thuỳ Duyên', 'thuyduyen@gmail.com', 2, 1),
+('trunganh', '$2a$12$L.Jtz04liBpuNbYFMYkKDu1N/QS54wchpY6495bXVumMp69MISSY6', 'Nguyễn Trung Anh', 'trunganh@gmail.com', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -425,7 +432,7 @@ CREATE TABLE `nhacungcap` (
   `sdt` varchar(255) DEFAULT NULL,
   `diachi` varchar(255) DEFAULT NULL,
   `trangthai` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `nhacungcap`
@@ -452,7 +459,7 @@ CREATE TABLE `nhomquyen` (
   `tennhomquyen` varchar(255) NOT NULL,
   `douutien` smallint(6) NOT NULL DEFAULT 0,
   `trangthai` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `nhomquyen`
@@ -480,7 +487,7 @@ CREATE TABLE `phieunhap` (
   `nguoinhanhang` varchar(255) DEFAULT NULL,
   `tongtien` bigint(20) NOT NULL DEFAULT 0,
   `trangthai` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `phieunhap`
@@ -512,7 +519,12 @@ INSERT INTO `phieunhap` (`maphieunhap`, `thoigiantao`, `makho`, `nguoitao`, `ngu
 (24, '2023-12-05 00:00:00', 1, 'thienan', 'thienan', 'nvnhap', 268400000, 4),
 (25, '2023-12-05 00:00:00', 1, 'thienan', 'thienan', 'nvnhap', 189900000, 4),
 (26, '2023-12-05 00:00:00', 1, 'nvnhap', 'trunganh', 'nvnhap', 45750000, 4),
-(27, '2023-12-05 00:00:00', 3, 'nvnhap', NULL, NULL, 192900000, 1);
+(27, '2023-12-05 00:00:00', 3, 'nvnhap', 'trunganh', NULL, 192900000, 3),
+(28, '2024-09-10 00:00:00', 1, 'trunganh', 'trunganh', NULL, 75960000, 3),
+(29, '2024-09-10 00:00:00', 1, 'trunganh', 'trunganh', NULL, 128000000, 3),
+(30, '2024-09-10 00:00:00', 1, 'hoainam1', NULL, NULL, -848757072, 2),
+(32, '2024-09-10 00:00:00', 1, 'trunganh', 'trunganh', NULL, 45450000, 3),
+(33, '2024-09-10 00:00:00', 1, 'hoainam1', NULL, NULL, 71000000, 1);
 
 -- --------------------------------------------------------
 
@@ -526,7 +538,7 @@ CREATE TABLE `phieuxuat` (
   `nguoitao` varchar(255) NOT NULL,
   `tongtien` bigint(20) NOT NULL,
   `trangthai` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `phieuxuat`
@@ -557,7 +569,8 @@ INSERT INTO `phieuxuat` (`maphieuxuat`, `thoigiantao`, `nguoitao`, `tongtien`, `
 (22, '2023-12-05 17:30:15', 'ngoctram', 514800000, 1),
 (23, '2023-12-05 17:59:20', 'trunganh', 359900000, 1),
 (24, '2023-12-05 23:33:38', 'ngoctram', 119120000, 1),
-(25, '2023-12-05 23:37:12', 'ngoctram', 218900000, 1);
+(25, '2023-12-05 23:37:12', 'ngoctram', 218900000, 1),
+(26, '2024-09-10 15:01:49', 'trunganh', 18490000, 1);
 
 -- --------------------------------------------------------
 
@@ -581,7 +594,7 @@ CREATE TABLE `sanpham` (
   `mausac` varchar(255) DEFAULT NULL,
   `os` varchar(255) DEFAULT NULL,
   `trangthai` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `sanpham`
@@ -595,7 +608,7 @@ INSERT INTO `sanpham` (`masanpham`, `maloaisanpham`, `tensanpham`, `soluong`, `g
 (5, 4, 'Acer Predator Helios 300 PH315 55 76KG', 0, 33990000, 'Intel® Core™ i7-12700H (up to 4.7Ghz, 24MB cache)', '16GB DDR5 4800Mhz (2x8GB) (2x SO-DIMM socket, up to 32GB SDRAM)', 'NVIDIA GeForce RTX 3060 6GB GDDR6', '512GB NVMe PCIe Gen3x4 SSD (2 slot)', '15.6 inch QHD (2560 x1440) IPS 165Hz, DCI-P3 100%, 5ms, 300nits, SlimBezel', '4 cell, 90Whr', 2.4, 'Đen', 'Windows 11 Home', 1),
 (6, 8, 'LG Gram 2023 16Z90R GAH76A5', 0, 44490000, 'Intel Core i7-1360P (12 Cores: 4P + 8E, P: 2.2 up to 5.0 GHz / E: 1.6 up to 3.7 GHz) 18 MB Cache', '16GB LPDDR5 6000MHz (Dual Channel, Onboard, không nâng cấp)', 'Intel Iris Xe Graphics', '512GB PCIe NVMe M.2 SSD (2 slot, còn trống 1 khe M.2)', '16 inch WQXGA (2560x1600), 16:10, IPS 60Hz, DCI-P3 99%, LGD, 350 nits, Anti-Glare', '80WHr', 1.199, 'Xám', 'Windows 11 Home', 1),
 (7, 3, 'Asus VivoBook 14 OLED M1405YA KM047W', -8, 14890000, 'Ryzen™ 5 7530U Mobile Processor (6-core/12-thread, 16MB cache, up to 4.3 GHz max boost)', '8GB Onboard DDR4 3200MHz (1 x Sodimm Slot, up to 24GB Ram)', 'AMD Radeon™ Graphics', '512GB M.2 NVMe™ PCIe® 3.0 SSD (1 slot, support M.2 2280 PCIe 3.0x4)', '14\" 2.8K (2880 x 1800) OLED 16:10, 90Hz 0.2ms, 600nits, 100% DCI-P3, Glossy display, Screen-to-body ratio: 86%, PANTONE Validated, VESA CERTIFIED Display HDR True Black 600', '50WHrs, 3S1P, 3-cell Li-ion', 1.6, 'Cool Silver', 'Windows 11 Home', 1),
-(8, 3, 'Asus VivoBook 15X OLED S3504VA L1226W', 10, 18490000, 'Intel® Core™ i5-1340P Processor 1.9 GHz (12MB Cache, up to 4.6 GHz, 12 cores, 16 Threads)', '16GB (8GB Onboard + 8GB Sodimm) DDR4 3200MHz', 'Intel Iris Xe Graphics (with dual channel memory)', '512GB M.2 NVMe™ PCIe® 4.0 SSD', '15.6\" FHD (1920 x 1080) OLED 16:9 aspect ratio, 60Hz 0.2ms, 550nits HDR peak brightness, 100% DCI-P3, Glossy display, Screen-to-body ratio: 85%, PANTONE Validated, VESA CERTIFIED Display HDR True Black 500', '50WHrs, 3S1P, 3-cell Li-ion', 1.7, 'Cool Silver', 'Windows 11 Home', 1),
+(8, 3, 'Asus VivoBook 15X OLED S3504VA L1226W', 9, 18490000, 'Intel® Core™ i5-1340P Processor 1.9 GHz (12MB Cache, up to 4.6 GHz, 12 cores, 16 Threads)', '16GB (8GB Onboard + 8GB Sodimm) DDR4 3200MHz', 'Intel Iris Xe Graphics (with dual channel memory)', '512GB M.2 NVMe™ PCIe® 4.0 SSD', '15.6\" FHD (1920 x 1080) OLED 16:9 aspect ratio, 60Hz 0.2ms, 550nits HDR peak brightness, 100% DCI-P3, Glossy display, Screen-to-body ratio: 85%, PANTONE Validated, VESA CERTIFIED Display HDR True Black 500', '50WHrs, 3S1P, 3-cell Li-ion', 1.7, 'Cool Silver', 'Windows 11 Home', 1),
 (9, 7, 'Dell Inspiron 15 3520 N5I5122W1 Black', 0, 15990000, 'Intel(R) Core(TM) i5-1235U Processor (12MB Cache, up to 4.4 GHz)', '1 x 8GB DDR4 2666MHz (2x SO-DIMM socket, up to 16GB SDRAM)', 'Intel Iris Xe Graphics (with dual channel memory); Intel® UHD Graphics', '256GB SSD NVMe PCIe (1 Slot)', '15.6 Inch FHD (1920 x 1080),120Hz, Anti- Glare LED Backlit Narrow Border Display', '3-cell Li-ion, 41 Wh', 1.9, 'Carbon Black', 'Windows 11 Home + Office Home&Student', 1),
 (10, 7, 'Dell Vostro 3520 V5I3614W1 Gray', 0, 12490000, 'Intel Core i3 - 1215U (Up to 4.4 Ghz, 12Mb)', '8GB (8x1) DDR4 2666MHz (2x SO-DIMM socket, up to 16GB SDRAM)', 'Intel UHD Graphics', '256GB SSD M.2 PCIE', '15.6 inch FHD (1920 x 1080) 120Hz 250 nits WVA Anti- Glare LED Backlit Narrow Border Display', '3 Cell 41WHr', 1.66, 'Đen', 'Windows 11 Home + Office Home & Student 2021', 1),
 (11, 1, 'Lenovo ThinkPad E14 21E300E3VN', 0, 23990000, 'Intel® Core™ i7-1255U, 10 Cores (2P + 8E) / 12 Threads, P-core 1.7 / 4.7GHz, E-core 1.2 / 3.5GHz, 12MB', '8GB Soldered DDR4-3200 (Trống 1 slot Sodimm, nâng cấp tối đa 40GB)', 'Intel Iris Xe Graphics (with dual channel memory); Intel® UHD Graphics (with single channel memory)', '512GB SSD M.2 2242 PCIe® 4.0x4 NVMe® Opal 2.0 (Còn trống 1 Slot M.2 2242 PCIe 3.0 x4)', '14\" FHD (1920x1080) IPS 300nits Anti-glare, 45% NTSC', '45Whr battery', 1.64, 'Black', 'Windows 11 Home', 1),
@@ -625,7 +638,7 @@ INSERT INTO `sanpham` (`masanpham`, `maloaisanpham`, `tensanpham`, `soluong`, `g
 CREATE TABLE `trangthaiphieunhap` (
   `matrangthai` int(11) NOT NULL,
   `tentrangthai` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `trangthaiphieunhap`
@@ -771,13 +784,13 @@ ALTER TABLE `nhomquyen`
 -- AUTO_INCREMENT for table `phieunhap`
 --
 ALTER TABLE `phieunhap`
-  MODIFY `maphieunhap` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `maphieunhap` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `phieuxuat`
 --
 ALTER TABLE `phieuxuat`
-  MODIFY `maphieuxuat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `maphieuxuat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `sanpham`
